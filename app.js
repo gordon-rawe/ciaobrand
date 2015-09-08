@@ -19,6 +19,7 @@ mongoose.connect('mongodb://localhost/shop');
 
 var GoddessModel = require('./db').GoddessModel;
 var EntityModel = require('./db').EntityModel;
+var DesignModel = require('./db').DesignModel;
 
 app.get("/",function(req,res){
 	var homeEntities = [];
@@ -93,11 +94,21 @@ app.get("/collections/:mark",function(req,res){
 });
 
 app.get("/design",function(req,res){
-	res.render("design");
+	DesignModel.find({}).exec(function(err,models){
+		if(err) return res.send("error happened...");
+		else{
+			res.render("design",{"models":models});
+		}
+	});
 });
 
 app.get('/design/edit',function(req,res){
-	res.render("designEdit");
+	DesignModel.find({}).exec(function(err,models){
+		if(err) return res.send("error happened...");
+		else{
+			res.render("designEdit",{"models":models});
+		}
+	});
 });
 
 
@@ -151,12 +162,9 @@ app.get("/add_detail_pictures/:style_no/:image_url",function(req,res){
 });
 
 
-app.post("/upload/:type",function(req,res){
-	var type = req.params.type;
+app.post("/upload/design",function(req,res){
 	var form = new formidable.IncomingForm();
-	if(type=="goddess") form.uploadDir = "./resources/images/goddess";
-	else if(type=="colletions") form.uploadDir = "./resources/images/collections";
-	else if(type=="design") form.uploadDir = "./resources/images/design";
+	form.uploadDir = "./resources/images/design";
  	form.keepExtensions = true;
 	form.on('file', function(field, file) {
         //rename the incoming file to the file's name
@@ -174,7 +182,21 @@ app.post("/upload/:type",function(req,res){
         console.log('-> upload done');
     })
 	.parse(req, function(err, fields, files) {
-      	
+		DesignModel.find({}).sort("-index").limit(1).exec(function(err,model){
+			if(err) res.send("err happened...");
+			else{
+				var t = 0;
+				if(model!=0) t = model[0].index+1; 
+				var designModel = new DesignModel({"image_url":"/images/design/"+files.picture.name,"index":t});
+				designModel.save(function(err,model,count){
+					if(err) res.send("err happened...");
+					else{
+						console.log(files);
+						res.redirect("/design/edit");
+					}
+				});
+			}
+		});
     });
 });
 

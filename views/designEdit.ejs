@@ -48,15 +48,9 @@
 					</div>
 					<div class="work">
 						<ul class="work_list edit_work_list">
-							<li><img src="/images/design/design_list1.jpg"/></li>
-							<li><img src="/images/design/design_list2.jpg"/></li>
-							<li><img src="/images/design/design_list3.jpg"/></li>
-							<li><img src="/images/design/design_list4.jpg"/></li>
-							<li><img src="/images/design/design_list5.jpg"/></li>
-							<li><img src="/images/design/design_list6.jpg"/></li>
-							<li><img src="/images/design/design_list2.jpg"/></li>
-							<li><img src="/images/design/design_list4.jpg"/></li>
-							<li><img src="/images/design/design_list5.jpg"/></li>
+							<%	models.forEach(function(model){  %>
+							<li><img src="<%= model.image_url %>"/></li>
+							<% }); %>
 							<li class="addMore"><i></i></li>
 						</ul>
 						<a class="left" href="javascript:;"><span>Last</span></a>
