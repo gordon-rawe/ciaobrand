@@ -174,14 +174,7 @@ app.post("/upload/:type",function(req,res){
         console.log('-> upload done');
     })
 	.parse(req, function(err, fields, files) {
-		// res.send("success");
-		// res.send(files);
-      	res.send(files);
-      	// var username = req.cookies.username;
-      	// UserModel.update({username:username},{$set:{logo:files.logo.path.split("\\")[2]}},function(err){
-      	// 	if(err) return res.render("err",{message:err});
-      	// 	else res.redirect("/users/"+username+"/about")
-      	// });
+      	
     });
 });
 
