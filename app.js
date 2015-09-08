@@ -72,8 +72,18 @@ app.get("/goddess",function(req,res){
 	});
 });
 
-
-
+app.get("/goddess/edit",function(req,res){
+	var pictures = [];
+	GoddessModel.find({}).exec(function(err,goddesses){
+		if(err) return res.send("error happened...");
+		else{
+			goddesses.forEach(function(goddess){
+				pictures.push({"thumbnail":goddess.image_url,"source":goddess.image_url});
+			});
+			res.render("goddessEdit",{"pictures":pictures});	
+		}
+	});
+});
 
 app.get("/collections/:mark",function(req,res){
 	var mark = req.params.mark;
@@ -193,6 +203,44 @@ app.post("/upload/design",function(req,res){
 					else{
 						console.log(files);
 						res.redirect("/design/edit");
+					}
+				});
+			}
+		});
+    });
+});
+
+app.post("/upload/goddess",function(req,res){
+	var form = new formidable.IncomingForm();
+	form.uploadDir = "./resources/images/goddess";
+ 	form.keepExtensions = true;
+	form.on('file', function(field, file) {
+        //rename the incoming file to the file's name
+        fs.rename(file.path, form.uploadDir + "/" + file.name);
+    })
+    .on('error', function(err) {
+        console.log("an error has occured with form upload");
+        console.log(err);
+        request.resume();
+    })
+    .on('aborted', function(err) {
+        console.log("user aborted upload");
+    })
+    .on('end', function() {
+        console.log('-> upload done');
+    })
+	.parse(req, function(err, fields, files) {
+		DesignModel.find({}).sort("-index").limit(1).exec(function(err,model){
+			if(err) res.send("err happened...");
+			else{
+				var t = 0;
+				if(model!=0) t = model[0].index+1; 
+				var designModel = new DesignModel({"image_url":"/images/goddess/"+files.picture.name,"index":t});
+				designModel.save(function(err,model,count){
+					if(err) res.send("err happened...");
+					else{
+						console.log(files);
+						res.redirect("/goddess/edit");
 					}
 				});
 			}
