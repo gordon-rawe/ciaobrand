@@ -97,8 +97,9 @@ app.get("/collections/:mark",function(req,res){
 				if(entity.type=="bags") bags.push(entity);
 				if(entity.type=="wallets") wallets.push(entity);
 				if(entity.type=="accessories") accessories.push(entity);
-				res.render("collections",{"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
 			});
+			console.log({"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
+			res.render("collections",{"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
 		}
 	});
 });
