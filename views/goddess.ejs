@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>CIAOBRAND</title>
+<meta name="keywords" content=""/>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/goddess.css">
+</head>
+<body>
+	<div class="contentbox">
+		<header>
+			<div id="header">
+				<h1><a href="/">CIAOBRAND</a></h1>
+				<a href="javascript:;" class="changelanguage">English</a>
+			</div>
+		</header>
+	</div>
+	<div class="container">
+		<div class="contentbox">
+			<div class="navigation">
+				<ul>
+					<li><a href="/about">about ciaobrand</a></li>
+					<li><a href="/design">ciao design</a></li>
+					<li class="first">
+						<p class="bottom">collections</p>
+						<ul class="second">
+							<li class="one"><a href="/collections/bags">hand bags</a></li>
+							<li class="two"><a href="/collections/wallets">wallets</a></li>
+							<li class="three"><a href="/collections/accessories">accessories</a></li>
+						</ul>
+					</li>
+					<li class="index">ciao's goddess</li>
+					<li><a href="/contact">contact us</a></li>
+				</ul>
+			</div>
+			<div class="content">
+				<div class="corner">
+				</div>
+				<div class="goddess">
+					<div class="work">
+						
+				<%  for(var i = 0; i < Math.floor(pictures.length/18);i++){  %>
+						<ul class="work_list">
+					<%	for(var j = 0; j < 18;j++){  %>
+							<li><img src="<%= pictures[i*18+j].thumbnail %>"/></li>
+					<%	};	%>
+						</ul>
+				<%	}; 	%>
+					<ul class="work_list">
+						<%  for(var i = pictures.length - pictures.length%18; i < pictures.length;i++){  %>	
+							<li><img src="<%= pictures[i].thumbnail %>"/></li>
+						<%	}; 	%>	
+					</ul>
+				
+						
+						<a class="left" href="javascript:;"><span>Last</span></a>
+						<a class="right" href="javascript:;"><span>Next</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="contentbox">
+		<footer>
+			<div id="footer">
+				<p>@2015 CIAOBRAND</p>
+			</div>
+		</footer>
+	</div>
+	<div class="popup">
+		<p class="close">close</p>
+		<div class="popupContent"></div>
+	</div>
+	<script src="/javascript/jquery-1.7.1.min.js"></script>
+	<script src="/javascript/goddess.js"></script>
+	<script src="/javascript/common.js"></script>
+</body>
+</html>

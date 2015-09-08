@@ -1,0 +1,30 @@
+.index .banner{
+	position: absolute;
+	top: 60px;
+	left: 320px;
+}
+.index .ads{
+	margin-top: 20px;
+	font-family: "Courier New";
+	font-size: 18px;
+	color: #666;
+	line-height: 24px;
+}
+.Arrival{
+	position: relative;
+	margin-top: 15px;
+	z-index: 10;
+}
+.Arrival p.new{
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+.Arrival p.new span.year{
+	font-size: 12px;
+	color: #666;
+}
+.arrival_list ul li{
+	float: left;
+	width: 100px;
+	margin-right: 20px;
+}

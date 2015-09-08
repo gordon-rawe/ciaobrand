@@ -1,0 +1,17 @@
+.contact{
+	position: absolute;
+	top: 80px;
+	left: 320px;
+}
+.contact p span{
+	display: inline-block;
+	color: #999;
+	font-size: 14px;
+	width: 110px;
+}
+.contact p{
+	font-size: 18px;
+}
+.contact .ow a{
+	text-decoration: underline;
+}

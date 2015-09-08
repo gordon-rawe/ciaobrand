@@ -1,0 +1,36 @@
+.goddess{
+	margin: 0 25px;
+	position: relative;
+	z-index: 10;
+	width: 770px;
+	overflow:hidden;
+	height: 500px;
+}
+.goddess .work{
+	width: 9999px;
+}
+.goddess .work_list{
+	width: 720px;
+	overflow: auto;
+	zoom:1;
+	position: absolute;
+	top: 0;
+	left: 3000px;
+}
+.goddess .work_list:first-child{
+	left: 0;
+}
+.goddess .work_list li{
+	float: left;
+	padding:10px;
+	width: 100px;
+	position: relative;
+}
+.left{
+	top: 385px;
+	left: 400px;
+}
+.right{
+	left: 666px;
+	top: 385px;
+}

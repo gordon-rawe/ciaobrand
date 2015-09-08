@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>CIAOBRAND</title>
+<meta name="keywords" content=""/>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/collections.css">
+</head>
+<body>
+	<div class="contentbox">
+		<header>
+			<div id="header">
+				<h1><a href="/">CIAOBRAND</a></h1>
+				<a href="javascript:;" class="changelanguage">English</a>
+			</div>
+		</header>
+	</div>
+	<div class="container">
+		<div class="contentbox">
+			<div class="navigation">
+				<ul>
+					<li><a href="/about">about ciaobrand</a></li>
+					<li><a href="/design">ciao design</a></li>
+					<li class="first">
+						<p class="bottom">collections</p>
+						<ul class="second">
+							<li <% if(mark=="bags") { %>class="index"<% } %> >hand bags</li>
+							<li <% if(mark=="wallets") { %>class="index"<% } %> >wallets</li>
+							<li <% if(mark=="accessories") { %>class="index"<% } %>>accessories</li>
+						</ul>
+					</li>
+					<li><a href="/goddess">ciao's goddess</a></li>
+					<li><a href="/contact">contact us</a></li>
+				</ul>
+			</div>
+			<div class="content">
+				<div class="collections">
+					<div class="handbags col">
+						<h2>CIAO BAGS</h2>
+						<div class="lists">
+							<ul>
+							<%  bags.forEach(function(bag){ %>
+								<li><a href="/collections_product/bags/<%= bag.style_no %>">
+									<div class="img">
+										<img src="<%= bag.thumbnail %>"/>
+										<p class='border'></p>
+									</div>
+									<div class="desc">
+										<p class="name"><%= bag.title %></p>
+										<p class="price"><%= bag.price %></p>
+									</div>
+									</a>
+								</li>
+							<%	}); 	%>
+							</ul>
+						</div>
+					</div>
+					<div class="wallets col">
+						<h2>CIAO WALLETS</h2>
+						<div class="lists">
+							<ul>
+							<%  wallets.forEach(function(wallet){ %>
+								<li><a href="/collections_product/wallets/<%= wallet.style_no %>">
+									<div class="img">
+										<img src="<%= wallet.thumbnail %>"/>
+										<p class='border'></p>
+									</div>
+									<div class="desc">
+										<p class="name"><%= wallet.title %></p>
+										<p class="price"><%= wallet.price %></p>
+									</div>
+									</a>
+								</li>
+							<%	}); 	%>
+							</ul>
+						</div>
+					</div>
+					<div class="accessories col">
+						<h2>CIAO ACCESSORIES</h2>
+						<div class="lists">
+							<ul>
+							<%  accessories.forEach(function(accessory){ %>
+								<li><a href="/collections_product/accessories/<%= accessory.style_no %>">
+									<div class="img">
+										<img src="<%= accessory.thumbnail %>"/>
+										<p class='border'></p>
+									</div>
+									<div class="desc">
+										<p class="name"><%= accessory.title %></p>
+										<p class="price"><%= accessory.price %></p>
+									</div>
+									</a>
+								</li>
+							<%	}); 	%>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="contentbox">
+		<footer>
+			<div id="footer">
+				<p>@2015 CIAOBRAND</p>
+			</div>
+		</footer>
+	</div>
+	<div class="popup">
+		<p class="close">close</p>
+		<div class="popupContent"></div>
+	</div>
+	<script src="/javascript/jquery-1.7.1.min.js"></script>
+	<script src="/javascript/collections.js"></script>
+	<script src="/javascript/common.js"></script>
+</body>
+</html>

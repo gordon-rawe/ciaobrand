@@ -1,0 +1,88 @@
+.corner{
+	width: 302px;
+	position: absolute;
+	top: -40px;
+}
+.design{
+	width: 778px;
+}
+.design .ads{
+	position: absolute;
+	right: 200px;
+	top: 65px;
+}
+.design .ads p{
+	font-size: 18px;
+	color: #666;
+	font-family: "courier New";
+	line-height: 24px;
+}
+.work{
+	overflow: hidden;
+	margin: 0 30px;
+	margin-top: 135px;
+	position: relative;
+	z-index: 10;
+	height: 500px;
+}
+.work .work_list{
+	width: 9999px;
+	overflow: auto;
+	zoom:1;
+	position: absolute;
+}
+.work .work_list li{
+	width: 100px;
+	float: left;
+	padding:10px;
+	position: relative;
+}
+.left{
+	left: 10px;
+	top: 170px;
+}
+.right{
+	right: 10px;
+	top: 170px;
+}
+.popupContent{
+	background-color: #fff;
+	padding-top: 10px;
+}
+#image-wrap{
+	height: 400px;
+	overflow: hidden;
+	margin-top: 20px;
+}
+.button{
+	border: 1px solid #ccc;
+	padding: 5px 13px;
+	border-radius: 2px;
+	float: right;
+}
+.file {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
