@@ -28,19 +28,19 @@ app.get("/",function(req,res){
 		else{
 			bags.forEach(function(bag){
 				console.log(bag);
-				homeEntities.push({"thumbnail":bag.thumbnail,"type":bag.type,"style_no":bag.style_no});
+				homeEntities.push({"thumbnail":bag.detail_pictures[0],"type":bag.type,"style_no":bag.style_no});
 			});
 			EntityModel.find({type:"wallets"}).limit(2).exec(function(err,wallets){
 				if(err) return res.send("error happened...");
 				else{
 					wallets.forEach(function(wallet){
-						homeEntities.push({"thumbnail":wallet.thumbnail,"type":wallet.type,"style_no":wallet.style_no});
+						homeEntities.push({"thumbnail":wallet.bag.detail_pictures[0],"type":wallet.type,"style_no":wallet.style_no});
 					});
 					EntityModel.find({type:"accessories"}).limit(2).exec(function(err,accessories){
 						if(err) return res.send("error happened...");
 						else{
 							accessories.forEach(function(accessory){
-								homeEntities.push({"thumbnail":accessory.thumbnail,"type":accessory.type,"style_no":accessory.style_no});			
+								homeEntities.push({"thumbnail":accessory.bag.detail_pictures[0],"type":accessory.type,"style_no":accessory.style_no});			
 							});
 							res.render("index",{"entities":homeEntities});
 						}	
@@ -87,6 +87,7 @@ app.get("/goddess/edit",function(req,res){
 
 app.get("/collections/:mark",function(req,res){
 	var mark = req.params.mark;
+	if(mark=="edit") return req.next();
 	var bags = [];
 	var wallets = [];
 	var accessories = [];
@@ -103,7 +104,8 @@ app.get("/collections/:mark",function(req,res){
 		}
 	});
 });
-app.get("/collection/edit",function(req,res){
+
+app.get("/collections/edit",function(req,res){
 	var bags = [];
 	var wallets = [];
 	var accessories = [];
@@ -136,7 +138,7 @@ app.post("/collection/add",function(req,res){
 			EntityModel.update({"_id":entity._id},{$push:{"detail_pictures":"/images/collections/default.jpg"}},function(err){
 				if(err) return res.send("err happened");
 				else{
-					return res.redirect("/collection/edit");
+					return res.redirect("/collections/edit");
 				}
 			});
 			

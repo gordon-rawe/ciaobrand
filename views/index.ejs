@@ -55,7 +55,7 @@
 							<% if (entities.length) { %> 
 						        <ul>  
 						          <% entities.forEach(function(entity){ %>  
-						          <a href="/collections_product/<%= entity.type %>/<%= entity.style_no %>"><li><img src="<%= entity.detail_pictures[0] %>"/></li></a>
+						          <a href="/collections_product/<%= entity.type %>/<%= entity.style_no %>"><li><img src="<%= entity.thumbnail %>"/></li></a>
 						          <% }) %>  
 						        </ul>  
 					      	<% } %> 
