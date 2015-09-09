@@ -87,7 +87,7 @@ app.get("/goddess/edit",function(req,res){
 
 app.get("/collections/:mark",function(req,res){
 	var mark = req.params.mark;
-	if(mark=="edit") return req.next();
+	if(mark=="edit"||mark=="delete") return req.next();
 	var bags = [];
 	var wallets = [];
 	var accessories = [];
@@ -101,6 +101,16 @@ app.get("/collections/:mark",function(req,res){
 			});
 			console.log({"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
 			res.render("collections",{"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
+		}
+	});
+});
+
+app.get("/collections/delete/:id",function(req,res){
+	var id = req.params.id;
+	EntityModel.remove({"_id":id},function(err){
+		if(err) return res.send("error happened...");
+		else{
+			res.redirect("/collections/edit");
 		}
 	});
 });
