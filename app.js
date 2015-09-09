@@ -27,7 +27,6 @@ app.get("/",function(req,res){
 		if(err) return res.send("error happened...");
 		else{
 			bags.forEach(function(bag){
-				console.log(bag);
 				homeEntities.push({"thumbnail":bag.detail_pictures[0],"type":bag.type,"style_no":bag.style_no});
 			});
 			EntityModel.find({type:"wallets"}).limit(2).exec(function(err,wallets){
@@ -99,7 +98,6 @@ app.get("/collections/:mark",function(req,res){
 				if(entity.type=="wallets") wallets.push(entity);
 				if(entity.type=="accessories") accessories.push(entity);
 			});
-			console.log({"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
 			res.render("collections",{"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
 		}
 	});
@@ -120,7 +118,6 @@ app.get("/collections/edit",function(req,res){
 	var wallets = [];
 	var accessories = [];
 	EntityModel.find().exec(function(err,entities){
-		console.log(entities);
 		if(err) return res.send("error happened...");
 		else{
 			entities.forEach(function(entity){
@@ -140,7 +137,6 @@ app.post("/collection/add",function(req,res){
 	var sub_title = req.body.sub_title;
 	var dimension = req.body.dimension;
 	var price = req.body.price;
-	console.log({"style_no":style_no,"title":title,"sub_title":sub_title,"dimension":dimension,"price":price,"type":type});
 	var entityModel = new EntityModel({"style_no":style_no,"title":title,"sub_title":sub_title,"dimension":dimension,"price":price,"type":type});
 	entityModel.save(function(err,entity,count){
 		if(err) return res.send("error happened...");
@@ -265,7 +261,6 @@ app.post("/upload/design",function(req,res){
 				designModel.save(function(err,model,count){
 					if(err) res.send("err happened...");
 					else{
-						console.log(files);
 						res.redirect("/design/edit");
 					}
 				});
@@ -303,7 +298,6 @@ app.post("/upload/goddess",function(req,res){
 				godessModel.save(function(err,model,count){
 					if(err) res.send("err happened...");
 					else{
-						console.log(files);
 						res.redirect("/goddess/edit");
 					}
 				});
