@@ -103,12 +103,12 @@ app.get("/collections/:mark",function(req,res){
 		}
 	});
 });
-app.get("/collection/:mark/edit",function(req,res){
-	var mark = req.params.mark;
+app.get("/collection/edit",function(req,res){
 	var bags = [];
 	var wallets = [];
 	var accessories = [];
 	EntityModel.find().exec(function(err,entities){
+		console.log(entities);
 		if(err) return res.send("error happened...");
 		else{
 			entities.forEach(function(entity){
@@ -116,8 +116,30 @@ app.get("/collection/:mark/edit",function(req,res){
 				if(entity.type=="wallets") wallets.push(entity);
 				if(entity.type=="accessories") accessories.push(entity);
 			});
-			console.log({"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
-			res.render("collectionsEdit",{"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
+			res.render("collectionsEdit",{"bags":bags,"wallets":wallets,"accessories":accessories});
+		}
+	});
+});
+
+app.post("/collection/add",function(req,res){
+	var type = req.body.type;
+	var style_no = req.body.style_no;
+	var title = req.body.title;
+	var sub_title = req.body.sub_title;
+	var dimension = req.body.dimension;
+	var price = req.body.price;
+	console.log({"style_no":style_no,"title":title,"sub_title":sub_title,"dimension":dimension,"price":price,"type":type});
+	var entityModel = new EntityModel({"style_no":style_no,"title":title,"sub_title":sub_title,"dimension":dimension,"price":price,"type":type});
+	entityModel.save(function(err,entity,count){
+		if(err) return res.send("error happened...");
+		else{
+			EntityModel.update({"_id":entity._id},{$push:{"detail_pictures":"/images/collections/default.jpg"}},function(err){
+				if(err) return res.send("err happened");
+				else{
+					return res.redirect("/collection/edit");
+				}
+			});
+			
 		}
 	});
 });
@@ -159,45 +181,45 @@ app.get("/collections_product/:type/:style_no",function(req,res){
 	});
 });
 
-app.get("/create/:type/:style_no/:title/:sub_title/:dimension/:price",function(req,res){
-	var type = req.params.type;
-	var style_no = req.params.style_no;
-	var title = req.params.title;
-	var sub_title = req.params.sub_title;
-	var dimension = req.params.dimension;
-	var price = req.params.price;
-	EntityModel.find({"style_no":style_no}).exec(function(err,entity){
-		if(err) return res.send("error happened...");
-		if(entity!=0) return res.send(entity);
-		else{
-			var entityModel = new EntityModel({"type":type,"style_no":style_no,"title":title,"sub_title":sub_title,"dimension":dimension,"price":price});
-			entityModel.save(function(err,model,count){
-				if(err) return res.send("err happened");
-				else{
-					return res.send(model);
-				}
-			});
-		}
-	});
-});
+// app.get("/create/:type/:style_no/:title/:sub_title/:dimension/:price",function(req,res){
+// 	var type = req.params.type;
+// 	var style_no = req.params.style_no;
+// 	var title = req.params.title;
+// 	var sub_title = req.params.sub_title;
+// 	var dimension = req.params.dimension;
+// 	var price = req.params.price;
+// 	EntityModel.find({"style_no":style_no}).exec(function(err,entity){
+// 		if(err) return res.send("error happened...");
+// 		if(entity!=0) return res.send(entity);
+// 		else{
+// 			var entityModel = new EntityModel({"type":type,"style_no":style_no,"title":title,"sub_title":sub_title,"dimension":dimension,"price":price});
+// 			entityModel.save(function(err,model,count){
+// 				if(err) return res.send("err happened");
+// 				else{
+// 					return res.send(model);
+// 				}
+// 			});
+// 		}
+// 	});
+// });
 
-app.get("/add_thumbnail/:style_no/:image_url",function(req,res){
-	var style_no = req.params.style_no;
-	var image_url = "/images/collections/" + req.params.image_url;
-	EntityModel.update({"style_no":style_no},{$set:{"thumbnail": image_url}},function(err){
-      	if(err) return res.send("error happened...");
-      	else res.send("success...");
-    });
-});
+// app.get("/add_thumbnail/:style_no/:image_url",function(req,res){
+// 	var style_no = req.params.style_no;
+// 	var image_url = "/images/collections/" + req.params.image_url;
+// 	EntityModel.update({"style_no":style_no},{$set:{"thumbnail": image_url}},function(err){
+//       	if(err) return res.send("error happened...");
+//       	else res.send("success...");
+//     });
+// });
 
-app.get("/add_detail_pictures/:style_no/:image_url",function(req,res){
-	var style_no = req.params.style_no;
-	var image_url = req.params.image_url;
-	EntityModel.update({"style_no":style_no},{$push:{"detail_pictures":image_url}},function(err){
-      	if(err) return res.send("error happened...");
-      	else res.send("success...");
-    });
-});
+// app.get("/add_detail_pictures/:style_no/:image_url",function(req,res){
+// 	var style_no = req.params.style_no;
+// 	var image_url = req.params.image_url;
+// 	EntityModel.update({"style_no":style_no},{$push:{"detail_pictures":image_url}},function(err){
+//       	if(err) return res.send("error happened...");
+//       	else res.send("success...");
+//     });
+// });
 
 
 app.post("/upload/design",function(req,res){
