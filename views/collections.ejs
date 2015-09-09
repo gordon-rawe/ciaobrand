@@ -46,7 +46,7 @@
 							<%  bags.forEach(function(bag){ %>
 								<li><a href="/collections_product/bags/<%= bag.style_no %>">
 									<div class="img">
-										<img src="<%= bag.thumbnail %>"/>
+										<img src="<%= bag.detail_pictures[0] %>"/>
 										<p class='border'></p>
 									</div>
 									<div class="desc">
@@ -66,7 +66,7 @@
 							<%  wallets.forEach(function(wallet){ %>
 								<li><a href="/collections_product/wallets/<%= wallet.style_no %>">
 									<div class="img">
-										<img src="<%= wallet.thumbnail %>"/>
+										<img src="<%= wallet.detail_pictures[0] %>"/>
 										<p class='border'></p>
 									</div>
 									<div class="desc">
@@ -86,7 +86,7 @@
 							<%  accessories.forEach(function(accessory){ %>
 								<li><a href="/collections_product/accessories/<%= accessory.style_no %>">
 									<div class="img">
-										<img src="<%= accessory.thumbnail %>"/>
+										<img src="<%= accessory.detail_pictures[0] %>"/>
 										<p class='border'></p>
 									</div>
 									<div class="desc">

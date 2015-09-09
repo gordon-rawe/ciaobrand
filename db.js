@@ -18,7 +18,6 @@ var EntitySchema = new Schema({
 	sub_title: String,
 	dimension: String,
 	price: String,
-	thumbnail: String,
 	detail_pictures:[String]
 });
 

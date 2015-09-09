@@ -52,10 +52,10 @@
 					<div class="Arrival">
 						<p class="new">New Arrivals / <span class="year">2015  Fall &amp; Winter</span></p>
 						<div class="arrival_list">
-							<% if (entities.length) { %>  
+							<% if (entities.length) { %> 
 						        <ul>  
 						          <% entities.forEach(function(entity){ %>  
-						          <a href="/collections_product/<%= entity.type %>/<%= entity.style_no %>"><li><img src="<%= entity.thumbnail %>"/></li></a>
+						          <a href="/collections_product/<%= entity.type %>/<%= entity.style_no %>"><li><img src="<%= entity.detail_pictures[0] %>"/></li></a>
 						          <% }) %>  
 						        </ul>  
 					      	<% } %> 
