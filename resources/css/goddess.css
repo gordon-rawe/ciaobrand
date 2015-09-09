@@ -25,6 +25,8 @@
 	padding:10px;
 	width: 100px;
 	position: relative;
+	height: 120px;
+	overflow: hidden;
 }
 .left{
 	top: 385px;
@@ -41,4 +43,7 @@
 	height: 400px;
 	overflow: hidden;
 	margin-top: 20px;
+}
+.goddess .work_list li .delete{
+	bottom: 10px;
 }

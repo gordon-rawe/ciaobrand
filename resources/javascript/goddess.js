@@ -47,6 +47,14 @@ $(function(){
 			}
 		}
 	});
+	$(".editwork .work_list li").hover(function(){
+		if(!$(this).hasClass("addMore")){
+			var id = $(this).attr("id");
+			$(this).append("<a href='/goddess/delete/"+id+"'class='delete'><i></i></a>");
+		}
+	},function(){
+		$(this).children(".delete").remove();
+	});
 	$(".work_list li").click(function(){
 		$("body").append("<div class='overlay'></div>");
 		if(!$(this).hasClass("addMore")){

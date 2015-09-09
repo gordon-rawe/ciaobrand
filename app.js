@@ -176,12 +176,14 @@ app.get("/design/delete/:index",function(req,res){
 
 app.get("/collections_product/:type/:style_no",function(req,res){
 	var type = req.params.type;
+	if(type=="edit") return req.next();
 	var style_no = req.params.style_no;
 	EntityModel.find({"type":type,"style_no":style_no}).exec(function(err,entities){
 		if(entities!=0) res.render("collections_product",{"entity":entities[0],"type":type});	
 		else res.send("err happened");
 	});
 });
+
 
 // app.get("/create/:type/:style_no/:title/:sub_title/:dimension/:price",function(req,res){
 // 	var type = req.params.type;

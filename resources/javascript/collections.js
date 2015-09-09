@@ -25,6 +25,15 @@ $(function(){
 			$(".col").eq(index).show().siblings().hide();
 		}
 	});
+	$(".editlists li").hover(function(){
+		$(this).children().find(".desc").hide();
+		if(!$(this).hasClass("addMore")){
+			var id = $(this).attr("id");
+			$(this).append("<a href='/collections/delete/"+id+"'class='delete'><i></i></a>");
+		}
+	},function(){
+		$(this).children(".delete").remove();
+	})
 	$(".editlists .addMore").click(function(){
 		$("body").append("<div class='overlay'></div>");
 		$(".popup").show();
