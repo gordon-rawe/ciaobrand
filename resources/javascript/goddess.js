@@ -48,9 +48,19 @@ $(function(){
 		}
 	});
 	$(".work_list li").click(function(){
-		var imgsrc=$(this).find("img").attr("src");
 		$("body").append("<div class='overlay'></div>");
-		$(".popup .popupContent").empty().append("<img src='"+imgsrc+"'/>");
+		if(!$(this).hasClass("addMore")){
+			$(".popup .uploadImage").hide();
+			var imgsrc=$(this).find("img").attr("src");
+			$(".popup .imgContent").empty().append("<img src='"+imgsrc+"'/>");
+			$(".popup .imgContent").show();
+		}else{
+			$(".popup .imgContent").hide();
+			$(".popup .uploadImage").show();
+		}
 		$(".popup").show();
-	})
+	});
+	$.imageFileVisible({wrapSelector: "#image-wrap",   
+		fileSelector: "#file"
+	});
 })

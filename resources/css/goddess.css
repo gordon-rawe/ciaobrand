@@ -34,3 +34,11 @@
 	left: 666px;
 	top: 385px;
 }
+.popupContent .uploadImage{
+	display: none;
+}
+#image-wrap{
+	height: 400px;
+	overflow: hidden;
+	margin-top: 20px;
+}

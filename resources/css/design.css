@@ -36,6 +36,8 @@
 	float: left;
 	padding:10px;
 	position: relative;
+	height: 110px;
+	overflow: hidden;
 }
 .left{
 	left: 10px;

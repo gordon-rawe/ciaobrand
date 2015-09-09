@@ -8,7 +8,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/design.css">
+<link rel="stylesheet" href="/css/goddess.css">
 </head>
 <body>
 	<div class="contentbox">
@@ -24,7 +24,7 @@
 			<div class="navigation">
 				<ul>
 					<li><a href="/about">about ciaobrand</a></li>
-					<li class="index">ciao design</li>
+					<li><a href="/design">ciao design</a></li>
 					<li class="first">
 						<p class="bottom">collections</p>
 						<ul class="second">
@@ -33,26 +33,29 @@
 							<li class="three"><a href="/collections/accessories">accessories</a></li>
 						</ul>
 					</li>
-					<li><a href="/goddess">ciao's goddess</a></li>
+					<li class="index">ciao's goddess</li>
 					<li><a href="/contact">contact us</a></li>
 				</ul>
 			</div>
 			<div class="content">
 				<div class="corner">
-					<img src="/images/design/design_ad.png">
 				</div>
-				<div class="design">
-					<div class="ads">
-						<p>The Devil Wears PRADA</p>
-						<p>The Goddess Carries CIAOBRAND</p>
-					</div>
+				<div class="goddess">
 					<div class="work">
-						<ul class="work_list edit_work_list">
-							<%	models.forEach(function(model){  %>
-							<li><img src="<%= model.image_url %>"/></li>
-							<% }); %>
-							<li class="addMore"><i></i></li>
+						
+				<%  for(var i = 0; i < Math.floor(pictures.length/18);i++){  %>
+						<ul class="work_list">
+					<%	for(var j = 0; j < 18;j++){  %>
+							<li><img src="<%= pictures[i*18+j].thumbnail %>"/></li>
+					<%	};	%>
 						</ul>
+				<%	}; 	%>
+					<ul class="work_list">
+						<%  for(var i = pictures.length - pictures.length%18; i < pictures.length;i++){  %>	
+							<li><img src="<%= pictures[i].thumbnail %>"/></li>
+						<%	}; 	%>	
+						<li class="addMore"><i></i></li>
+					</ul>
 						<a class="left" href="javascript:;"><span>Last</span></a>
 						<a class="right" href="javascript:;"><span>Next</span></a>
 					</div>
@@ -70,15 +73,18 @@
 	<div class="popup">
 		<p class="close">close</p>
 		<div class="popupContent">
-			<form id="uploadForm" enctype="multipart/form-data" action = "/upload/design" method = "post">
-              <input type="file" name="picture" id="file"/>
-              <input type="submit" value="Upload" name="submit">
-            </form>
-			<div id="image-wrap"></div>
+			<div class='imgContent'></div>
+			<div class="uploadImage">
+				<form id="uploadForm" enctype="multipart/form-data" action = "/upload/goddess" method = "post">
+	              <input type="file" name="picture" id="file"/>
+	              <input type="submit" value="Upload" name="submit">
+	            </form>
+				<div id="image-wrap"></div>
+			</div>
 		</div>
 	</div>
 	<script src="/javascript/jquery-1.7.1.min.js"></script>
-	<script src="/javascript/design.js"></script>
+	<script src="/javascript/goddess.js"></script>
 	<script src="/javascript/common.js"></script>
 	<script src="/javascript/image-file-visible.js"></script>
 </body>
