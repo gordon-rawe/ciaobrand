@@ -46,7 +46,8 @@ $(function(){
 	});
 	$(".edit_work_list li").hover(function(){
 		if(!$(this).hasClass("addMore")){
-			$(this).append("<p class='delete'><i></i></p>");
+			var id = $(this).attr("id");
+			$(this).append("<a href='/design/delete/"+id+"'class='delete'><i></i></a>");
 		}
 	},function(){
 		$(this).children(".delete").remove();

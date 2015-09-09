@@ -122,6 +122,15 @@ app.get('/design/edit',function(req,res){
 	});
 });
 
+app.get("/design/delete/:index",function(req,res){
+	var index = req.params.index;
+	DesignModel.remove({"index":index},function(err){
+		if(err) return res.send("error happened...");
+		else{
+			res.redirect("/design/edit");
+		}
+	});
+});
 
 app.get("/collections_product/:type/:style_no",function(req,res){
 	var type = req.params.type;

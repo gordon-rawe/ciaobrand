@@ -49,7 +49,7 @@
 					<div class="work">
 						<ul class="work_list edit_work_list">
 							<%	models.forEach(function(model){  %>
-							<li><img src="<%= model.image_url %>"/></li>
+							<li id="<%= model.index %>"><img src="<%= model.image_url %>"/></li>
 							<% }); %>
 							<li class="addMore"><i></i></li>
 						</ul>
