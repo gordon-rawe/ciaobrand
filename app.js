@@ -27,19 +27,19 @@ app.get("/",function(req,res){
 		if(err) return res.send("error happened...");
 		else{
 			bags.forEach(function(bag){
-				homeEntities.push({"thumbnail":bag.detail_pictures[0],"type":bag.type,"style_no":bag.style_no});
+				homeEntities.push({"id":bag._id,"thumbnail":bag.detail_pictures[0],"type":bag.type,"style_no":bag.style_no});
 			});
 			EntityModel.find({type:"wallets"}).limit(2).exec(function(err,wallets){
 				if(err) return res.send("error happened...");
 				else{
 					wallets.forEach(function(wallet){
-						homeEntities.push({"thumbnail":wallet.detail_pictures[0],"type":wallet.type,"style_no":wallet.style_no});
+						homeEntities.push({"id":wallet._id,"thumbnail":wallet.detail_pictures[0],"type":wallet.type,"style_no":wallet.style_no});
 					});
 					EntityModel.find({type:"accessories"}).limit(2).exec(function(err,accessories){
 						if(err) return res.send("error happened...");
 						else{
 							accessories.forEach(function(accessory){
-								homeEntities.push({"thumbnail":accessory.detail_pictures[0],"type":accessory.type,"style_no":accessory.style_no});			
+								homeEntities.push({"id":accessory._id,"thumbnail":accessory.detail_pictures[0],"type":accessory.type,"style_no":accessory.style_no});			
 							});
 							res.render("index",{"entities":homeEntities});
 						}	
@@ -180,16 +180,23 @@ app.get("/design/delete/:index",function(req,res){
 	});
 });
 
-app.get("/collections_product/:type/:style_no",function(req,res){
-	var type = req.params.type;
-	if(type=="edit") return req.next();
-	var style_no = req.params.style_no;
-	EntityModel.find({"type":type,"style_no":style_no}).exec(function(err,entities){
-		if(entities!=0) res.render("collections_product",{"entity":entities[0],"type":type});	
+app.get("/collections_product/:id",function(req,res){
+	var id = req.params.id;
+	if(id=="edit") return req.next();
+	EntityModel.find({"_id":id}).exec(function(err,entities){
+		console.log(entities);
+		if(entities!=0) res.render("collections_product",{"entity":entities[0],"type":entities[0].type});	
 		else res.send("err happened");
 	});
 });
 
+app.get("/collections_product/edit/:id",function(req,res){
+	var id = req.params.id;
+	EntityModel.find({"_id":id}).exec(function(err,entities){
+		if(entities!=0) res.render("collections_product",{"entity":entities[0],"type":type});	
+		else res.send("err happened");
+	});
+});
 
 // app.get("/create/:type/:style_no/:title/:sub_title/:dimension/:price",function(req,res){
 // 	var type = req.params.type;
