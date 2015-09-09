@@ -80,7 +80,7 @@ app.get("/goddess/edit",function(req,res){
 			goddesses.forEach(function(goddess){
 				pictures.push({"thumbnail":goddess.image_url,"source":goddess.image_url});
 			});
-			res.render("goddessEdit",{"pictures":pictures});	
+			res.render("goddessEdit",{"pictures":pictures});
 		}
 	});
 });
@@ -240,13 +240,13 @@ app.post("/upload/goddess",function(req,res){
         console.log('-> upload done');
     })
 	.parse(req, function(err, fields, files) {
-		DesignModel.find({}).sort("-index").limit(1).exec(function(err,model){
+		GoddessModel.find({}).sort("-index").limit(1).exec(function(err,model){
 			if(err) res.send("err happened...");
 			else{
 				var t = 0;
 				if(model!=0) t = model[0].index+1; 
-				var designModel = new DesignModel({"image_url":"/images/goddess/"+files.picture.name,"index":t});
-				designModel.save(function(err,model,count){
+				var godessModel = new GoddessModel({"image_url":"/images/goddess/"+files.picture.name,"index":t});
+				godessModel.save(function(err,model,count){
 					if(err) res.send("err happened...");
 					else{
 						console.log(files);
