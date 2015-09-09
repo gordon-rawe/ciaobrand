@@ -133,3 +133,16 @@
 .subcontent .brand .price{
 	font-size: 18px;
 }
+.popupContent{
+	background-color: #fff;
+}
+.popupContent form div{
+	padding: 10px 0;
+}
+.popupContent form div label{
+	display: inline-block;
+	width: 100px;
+}
+.popupContent form div input{
+	height: 30px;
+}

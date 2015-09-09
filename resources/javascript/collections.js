@@ -24,6 +24,10 @@ $(function(){
 			var index=$(this).index();
 			$(".col").eq(index).show().siblings().hide();
 		}
+	});
+	$(".editlists .addMore").click(function(){
+		$("body").append("<div class='overlay'></div>");
+		$(".popup").show();
 	})
 	
 })

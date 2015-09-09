@@ -103,6 +103,24 @@ app.get("/collections/:mark",function(req,res){
 		}
 	});
 });
+app.get("/collection/:mark/edit",function(req,res){
+	var mark = req.params.mark;
+	var bags = [];
+	var wallets = [];
+	var accessories = [];
+	EntityModel.find().exec(function(err,entities){
+		if(err) return res.send("error happened...");
+		else{
+			entities.forEach(function(entity){
+				if(entity.type=="bags") bags.push(entity);
+				if(entity.type=="wallets") wallets.push(entity);
+				if(entity.type=="accessories") accessories.push(entity);
+			});
+			console.log({"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
+			res.render("collectionsEdit",{"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
+		}
+	});
+});
 
 app.get("/design",function(req,res){
 	DesignModel.find({}).exec(function(err,models){
