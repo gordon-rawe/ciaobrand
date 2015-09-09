@@ -34,13 +34,13 @@ app.get("/",function(req,res){
 				if(err) return res.send("error happened...");
 				else{
 					wallets.forEach(function(wallet){
-						homeEntities.push({"thumbnail":wallet.bag.detail_pictures[0],"type":wallet.type,"style_no":wallet.style_no});
+						homeEntities.push({"thumbnail":wallet.detail_pictures[0],"type":wallet.type,"style_no":wallet.style_no});
 					});
 					EntityModel.find({type:"accessories"}).limit(2).exec(function(err,accessories){
 						if(err) return res.send("error happened...");
 						else{
 							accessories.forEach(function(accessory){
-								homeEntities.push({"thumbnail":accessory.bag.detail_pictures[0],"type":accessory.type,"style_no":accessory.style_no});			
+								homeEntities.push({"thumbnail":accessory.detail_pictures[0],"type":accessory.type,"style_no":accessory.style_no});			
 							});
 							res.render("index",{"entities":homeEntities});
 						}	
