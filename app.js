@@ -193,7 +193,7 @@ app.get("/collections_product/:id",function(req,res){
 app.get("/collections_product/edit/:id",function(req,res){
 	var id = req.params.id;
 	EntityModel.find({"_id":id}).exec(function(err,entities){
-		if(entities!=0) res.render("collections_product",{"entity":entities[0],"type":entities[0].type});	
+		if(entities!=0) res.render("collections_productEdit",{"entity":entities[0],"type":entities[0].type});	
 		else res.send("err happened");
 	});
 });

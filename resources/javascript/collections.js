@@ -37,6 +37,9 @@ $(function(){
 	$(".editlists .addMore").click(function(){
 		$("body").append("<div class='overlay'></div>");
 		$(".popup").show();
-	})
+	});
+	$.imageFileVisible({wrapSelector: "#image-wrap",   
+		fileSelector: "#file"
+	});
 	
 })

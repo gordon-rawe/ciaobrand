@@ -98,6 +98,7 @@
 	margin: 10px;
 	width: 80px;
 	cursor: pointer;
+	position: relative;
 }
 .handbags_product .product .product_list ul li.checked img{
 	border: 1px solid #242424;
@@ -154,4 +155,17 @@
 	right: 0;
 	top: 0;
 	bottom: 0;
+}
+.product_list .addMore i{
+	width: 80px;
+	height: 104px;
+	background-color: #efefef;
+}
+.product_list li .delete{
+	bottom: 8px;
+}
+#image-wrap{
+	height: 400px;
+	overflow: hidden;
+	margin-top: 20px;
 }

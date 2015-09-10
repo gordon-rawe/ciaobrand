@@ -56,11 +56,12 @@
 										<p class="price">$<%= entity.price %></p>
 									</div>
 								</div>
-								<div class="product_list">
+								<div class="product_list editlists">
 									<ul>
 										<% entity.detail_pictures.forEach(function(picture){ %>
 								        	<li><img src="<%= picture %>"/></li>
 								        <% }); %>
+								        <li class="addMore"><i></i></li>
 									</ul>
 								</div>
 							</div>
@@ -80,10 +81,19 @@
 	</div>
 	<div class="popup">
 		<p class="close">close</p>
-		<div class="popupContent"></div>
+		<div class="popupContent">
+			<div class="uploadImage">
+				<form id="uploadForm" enctype="multipart/form-data" action = "/upload/goddess" method = "post">
+	              <input type="file" name="picture" id="file"/>
+	              <input type="submit" value="Upload" name="submit">
+	            </form>
+				<div id="image-wrap"></div>
+			</div>
+		</div>
 	</div>
 	<script src="/javascript/jquery-1.7.1.min.js"></script>
 	<script src="/javascript/collections.js"></script>
 	<script src="/javascript/common.js"></script>
+	<script src="/javascript/image-file-visible.js"></script>
 </body>
 </html>
