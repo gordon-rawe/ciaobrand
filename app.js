@@ -141,7 +141,7 @@ app.post("/collection/add",function(req,res){
 	entityModel.save(function(err,entity,count){
 		if(err) return res.send("error happened...");
 		else{
-			EntityModel.update({"_id":entity._id},{$push:{"detail_pictures":"/images/collections/default.jpg"}},function(err){
+			EntityModel.update({"_id":entity._id},{$push:{"detail_pictures":"@images@collections@default.jpg"}},function(err){
 				if(err) return res.send("err happened");
 				else{
 					return res.redirect("/collections/edit");
@@ -198,46 +198,16 @@ app.get("/collections_product/edit/:id",function(req,res){
 	});
 });
 
-// app.get("/create/:type/:style_no/:title/:sub_title/:dimension/:price",function(req,res){
-// 	var type = req.params.type;
-// 	var style_no = req.params.style_no;
-// 	var title = req.params.title;
-// 	var sub_title = req.params.sub_title;
-// 	var dimension = req.params.dimension;
-// 	var price = req.params.price;
-// 	EntityModel.find({"style_no":style_no}).exec(function(err,entity){
-// 		if(err) return res.send("error happened...");
-// 		if(entity!=0) return res.send(entity);
-// 		else{
-// 			var entityModel = new EntityModel({"type":type,"style_no":style_no,"title":title,"sub_title":sub_title,"dimension":dimension,"price":price});
-// 			entityModel.save(function(err,model,count){
-// 				if(err) return res.send("err happened");
-// 				else{
-// 					return res.send(model);
-// 				}
-// 			});
-// 		}
-// 	});
-// });
-
-// app.get("/add_thumbnail/:style_no/:image_url",function(req,res){
-// 	var style_no = req.params.style_no;
-// 	var image_url = "/images/collections/" + req.params.image_url;
-// 	EntityModel.update({"style_no":style_no},{$set:{"thumbnail": image_url}},function(err){
-//       	if(err) return res.send("error happened...");
-//       	else res.send("success...");
-//     });
-// });
-
-// app.get("/add_detail_pictures/:style_no/:image_url",function(req,res){
-// 	var style_no = req.params.style_no;
-// 	var image_url = req.params.image_url;
-// 	EntityModel.update({"style_no":style_no},{$push:{"detail_pictures":image_url}},function(err){
-//       	if(err) return res.send("error happened...");
-//       	else res.send("success...");
-//     });
-// });
-
+app.get("/collections_product/delete/:imgurl/:id",function(req,res){
+	var imgurl = req.params.imgurl;
+	var id = req.params.id;
+	EntityModel.update({"_id":id},{$pull:{"detail_pictures":"@images@collections@"+imgurl}},function(err){
+		if(err) res.send(err);
+		else{
+			res.redirect("/collections_product/edit/"+id);
+		}
+	});
+});
 
 app.post("/upload/design",function(req,res){
 	var form = new formidable.IncomingForm();
@@ -308,6 +278,36 @@ app.post("/upload/goddess",function(req,res){
 						res.redirect("/goddess/edit");
 					}
 				});
+			}
+		});
+    });
+});
+
+app.post("/upload/collections/:id",function(req,res){
+	var id = req.params.id;
+	var form = new formidable.IncomingForm();
+	form.uploadDir = "./resources/images/collections";
+ 	form.keepExtensions = true;
+	form.on('file', function(field, file) {
+        //rename the incoming file to the file's name
+        fs.rename(file.path, form.uploadDir + "/" + file.name);
+    })
+    .on('error', function(err) {
+        console.log("an error has occured with form upload");
+        console.log(err);
+        request.resume();
+    })
+    .on('aborted', function(err) {
+        console.log("user aborted upload");
+    })
+    .on('end', function() {
+        console.log('-> upload done');
+    })
+	.parse(req, function(err, fields, files) {
+		EntityModel.update({"_id":id},{$push:{"detail_pictures":"@images@collections@"+files.picture.name}},function(err){
+			if(err) res.send("err happened...");
+			else{
+				res.redirect("/collections_product/edit/"+id);
 			}
 		});
     });

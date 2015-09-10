@@ -18,7 +18,7 @@ var EntitySchema = new Schema({
 	sub_title: String,
 	dimension: String,
 	price: String,
-	detail_pictures:[String]
+	detail_pictures:[]
 });
 
 module.exports.GoddessModel = mongoose.model('GoddessModel', GoddessSchema);
