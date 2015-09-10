@@ -79,7 +79,7 @@ app.get("/goddess/edit",function(req,res){
 			goddesses.forEach(function(goddess){
 				pictures.push({"thumbnail":goddess.image_url,"source":goddess.image_url});
 			});
-			res.render("goddessEdit",{"pictures":pictures});
+			res.render("goddess_edit",{"pictures":pictures});
 		}
 	});
 });
@@ -125,7 +125,7 @@ app.get("/collections/edit",function(req,res){
 				if(entity.type=="wallets") wallets.push(entity);
 				if(entity.type=="accessories") accessories.push(entity);
 			});
-			res.render("collectionsEdit",{"bags":bags,"wallets":wallets,"accessories":accessories});
+			res.render("collections_edit",{"bags":bags,"wallets":wallets,"accessories":accessories});
 		}
 	});
 });
@@ -165,7 +165,7 @@ app.get('/design/edit',function(req,res){
 	DesignModel.find({}).exec(function(err,models){
 		if(err) return res.send("error happened...");
 		else{
-			res.render("designEdit",{"models":models});
+			res.render("design_edit",{"models":models});
 		}
 	});
 });
@@ -193,7 +193,7 @@ app.get("/collections_product/:id",function(req,res){
 app.get("/collections_product/edit/:id",function(req,res){
 	var id = req.params.id;
 	EntityModel.find({"_id":id}).exec(function(err,entities){
-		if(entities!=0) res.render("collections_productEdit",{"entity":entities[0],"type":entities[0].type});	
+		if(entities!=0) res.render("collections_product_edit",{"entity":entities[0],"type":entities[0].type});	
 		else res.send("err happened");
 	});
 });
