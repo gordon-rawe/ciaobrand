@@ -46,7 +46,7 @@
 							<%  bags.forEach(function(bag){ %>
 								<li id="<%= bag._id %>" ><a href="/collections_product/bags/<%= bag.style_no %>">
 									<div class="img">
-										<img src="<%= bag.detail_pictures[0].replace(/@/g,"/") %>"/>
+										<img src="<%= bag.detail_pictures[0].url.replace(/@/g,"/") %>"/>
 										<p class='border'></p>
 									</div>
 									<div class="desc">
@@ -67,7 +67,7 @@
 							<%  wallets.forEach(function(wallet){ %>
 								<li id="<%= wallet._id %>" ><a href="/collections_product/wallets/<%= wallet.style_no %>">
 									<div class="img">
-										<img src="<%= wallet.detail_pictures[0].replace(/@/g,"/") %>"/>
+										<img src="<%= wallet.detail_pictures[0].url.replace(/@/g,"/") %>"/>
 										<p class='border'></p>
 									</div>
 									<div class="desc">
@@ -88,7 +88,7 @@
 							<%  accessories.forEach(function(accessory){ %>
 								<li id="<%= accessory._id %>" ><a href="/collections_product/accessories/<%= accessory.style_no %>">
 									<div class="img">
-										<img src="<%= accessory.detail_pictures[0].replace(/@/g,"/") %>"/>
+										<img src="<%= accessory.detail_pictures[0].url.replace(/@/g,"/") %>"/>
 										<p class='border'></p>
 									</div>
 									<div class="desc">

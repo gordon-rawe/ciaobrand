@@ -27,19 +27,19 @@ app.get("/",function(req,res){
 		if(err) return res.send("error happened...");
 		else{
 			bags.forEach(function(bag){
-				homeEntities.push({"id":bag._id,"thumbnail":bag.detail_pictures[0],"type":bag.type,"style_no":bag.style_no});
+				homeEntities.push({"id":bag._id,"thumbnail":bag.detail_pictures[0].url,"type":bag.type,"style_no":bag.style_no});
 			});
 			EntityModel.find({type:"wallets"}).limit(2).exec(function(err,wallets){
 				if(err) return res.send("error happened...");
 				else{
 					wallets.forEach(function(wallet){
-						homeEntities.push({"id":wallet._id,"thumbnail":wallet.detail_pictures[0],"type":wallet.type,"style_no":wallet.style_no});
+						homeEntities.push({"id":wallet._id,"thumbnail":wallet.detail_pictures[0].url,"type":wallet.type,"style_no":wallet.style_no});
 					});
 					EntityModel.find({type:"accessories"}).limit(2).exec(function(err,accessories){
 						if(err) return res.send("error happened...");
 						else{
 							accessories.forEach(function(accessory){
-								homeEntities.push({"id":accessory._id,"thumbnail":accessory.detail_pictures[0],"type":accessory.type,"style_no":accessory.style_no});			
+								homeEntities.push({"id":accessory._id,"thumbnail":accessory.detail_pictures[0].url,"type":accessory.type,"style_no":accessory.style_no});			
 							});
 							res.render("index",{"entities":homeEntities});
 						}	
@@ -141,7 +141,7 @@ app.post("/collection/add",function(req,res){
 	entityModel.save(function(err,entity,count){
 		if(err) return res.send("error happened...");
 		else{
-			EntityModel.update({"_id":entity._id},{$push:{"detail_pictures":"@images@collections@default.jpg"}},function(err){
+			EntityModel.update({"_id":entity._id},{$push:{"detail_pictures":{"url":"@images@collections@default.jpg"}}},function(err){
 				if(err) return res.send("err happened");
 				else{
 					return res.redirect("/collections/edit");
@@ -201,7 +201,7 @@ app.get("/collections_product/edit/:id",function(req,res){
 app.get("/collections_product/delete/:imgurl/:id",function(req,res){
 	var imgurl = req.params.imgurl;
 	var id = req.params.id;
-	EntityModel.update({"_id":id},{$pull:{"detail_pictures":"@images@collections@"+imgurl}},function(err){
+	EntityModel.update({"_id":id},{$pull:{"detail_pictures":{"url":"@images@collections@"+imgurl}}},function(err){
 		if(err) res.send(err);
 		else{
 			res.redirect("/collections_product/edit/"+id);
@@ -304,7 +304,7 @@ app.post("/upload/collections/:id",function(req,res){
         console.log('-> upload done');
     })
 	.parse(req, function(err, fields, files) {
-		EntityModel.update({"_id":id},{$push:{"detail_pictures":"@images@collections@"+files.picture.name}},function(err){
+		EntityModel.update({"_id":id},{$push:{"detail_pictures":{"url":"@images@collections@"+files.picture.name}}},function(err){
 			if(err) res.send("err happened...");
 			else{
 				res.redirect("/collections_product/edit/"+id);

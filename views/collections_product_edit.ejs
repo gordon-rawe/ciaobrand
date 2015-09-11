@@ -43,7 +43,7 @@
 						<p><a class='left' href="/collections/<%= type %>">back</a></p>
 						<div class="product">
 							<div class="img">
-								<img src="<%= entity.detail_pictures[0].replace(/@/g,"/") %>"/>
+								<img src="<%= entity.detail_pictures[0].url.replace(/@/g,"/") %>"/>
 								<div class="border"></div>
 							</div>
 							<div class="subcontent">
@@ -59,7 +59,7 @@
 								<div class="product_list editlists">
 									<ul>
 										<% entity.detail_pictures.forEach(function(picture){ %>
-								        	<li id="<%= picture %>" name="<%= entity._id %>"><img src="<%= picture.replace(/@/g,"/") %>"/></li>
+								        	<li id="<%= picture.url %>" name="<%= entity._id %>"><img src="<%= picture.url.replace(/@/g,"/") %>"/></li>
 								        <% }); %>
 								        <li class="addMore"><i></i></li>
 									</ul>
