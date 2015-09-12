@@ -39,6 +39,9 @@
 .popupContent .uploadImage{
 	display: none;
 }
+.popupContent{
+	overflow: hidden;
+}
 #image-wrap{
 	height: 400px;
 	overflow: hidden;
