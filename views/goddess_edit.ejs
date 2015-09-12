@@ -45,13 +45,13 @@
 				<%  for(var i = 0; i < Math.floor(pictures.length/18);i++){  %>
 						<ul class="work_list">
 					<%	for(var j = 0; j < 18;j++){  %>
-							<li><img src="<%= pictures[i*18+j].thumbnail %>"/></li>
+							<li id="<%= pictures[i*18+j].index %>"><img src="<%= pictures[i*18+j].thumbnail %>"/></li>
 					<%	};	%>
 						</ul>
 				<%	}; 	%>
 					<ul class="work_list">
 						<%  for(var i = pictures.length - pictures.length%18; i < pictures.length;i++){  %>	
-							<li><img src="<%= pictures[i].thumbnail %>"/></li>
+							<li id="<%= pictures[i].index %>"><img src="<%= pictures[i].thumbnail %>"/></li>
 						<%	}; 	%>	
 						<li class="addMore"><i></i></li>
 					</ul>

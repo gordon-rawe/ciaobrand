@@ -77,9 +77,19 @@ app.get("/goddess/edit",function(req,res){
 		if(err) return res.send("error happened...");
 		else{
 			goddesses.forEach(function(goddess){
-				pictures.push({"thumbnail":goddess.image_url,"source":goddess.image_url});
+				pictures.push({"thumbnail":goddess.image_url,"source":goddess.image_url,"index":goddess.index});
 			});
 			res.render("goddess_edit",{"pictures":pictures});
+		}
+	});
+});
+
+app.get("/goddess/delete/:index",function(req,res){
+	var index = req.params.index;
+	GoddessModel.remove({"index":index},function(err){
+		if(err) return res.send("error happened...");
+		else{
+			res.redirect("/goddess/edit");
 		}
 	});
 });
