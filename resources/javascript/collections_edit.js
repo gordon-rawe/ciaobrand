@@ -25,17 +25,18 @@ $(function(){
 			$(".col").eq(index).show().siblings().hide();
 		}
 	});
-	$(".editlists li").hover(function(){
-		$(this).children().find(".desc").hide();
-		if(!$(this).hasClass("addMore")){
-			var id = $(this).attr("id");
-			var url = $(this).attr("name");
-			$(this).append("<a href='/collections_product/delete/"+id+"/"+url+"'class='delete'><i></i></a>");
+	$(".editProductlists li").hover(function(){
+		if($(this).parent().children().length>2){
+			if(!$(this).hasClass("addMore")){
+				var id = $(this).attr("id");
+				var url = $(this).attr("name");
+				$(this).append("<a href='/collections_product/delete/"+id+"/"+url+"'class='delete'><i></i></a>");
+			}
 		}
 	},function(){
 		$(this).children(".delete").remove();
 	})
-	$(".editlists .addMore").click(function(){
+	$(".editProductlists .addMore").click(function(){
 		$("body").append("<div class='overlay'></div>");
 		$(".popup").show();
 	});

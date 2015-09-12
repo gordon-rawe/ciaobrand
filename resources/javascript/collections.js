@@ -26,16 +26,31 @@ $(function(){
 		}
 	});
 	$(".editlists li").hover(function(){
-		$(this).children().find(".desc").hide();
-		if(!$(this).hasClass("addMore")){
-			var id = $(this).attr("id");
-			$(this).append("<a href='/collections/delete/"+id+"'class='delete'><i></i></a>");
-		}
+			$(this).children().find(".desc").hide();
+			if(!$(this).hasClass("addMore")){
+				var id = $(this).attr("id");
+				$(this).append("<a href='/collections/delete/"+id+"'class='delete'><i></i></a>");
+			}
+		
 	},function(){
 		$(this).children(".delete").remove();
 	})
 	$(".editlists .addMore").click(function(){
+		var indexDetail=$(".first ul.second li.index").text();
+		var type;
+		switch(indexDetail)
+		{
+		case "accessories":
+		  type="accessories"
+		  break;
+		case "wallets":
+		  type="wallets"
+		  break;
+		default:
+		  type="bags"
+		}
 		$("body").append("<div class='overlay'></div>");
+		$(".popup #typeSelect").val(type);
 		$(".popup").show();
 	});
 	$.imageFileVisible({wrapSelector: "#image-wrap",   

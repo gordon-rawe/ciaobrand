@@ -56,7 +56,7 @@
 										<p class="price">$<%= entity.price %></p>
 									</div>
 								</div>
-								<div class="product_list editlists">
+								<div class="product_list editProductlists">
 									<ul>
 										<% entity.detail_pictures.forEach(function(picture){ %>
 								        	<li id="<%= picture.url %>" name="<%= entity._id %>"><img src="<%= picture.url.replace(/@/g,"/") %>"/></li>
