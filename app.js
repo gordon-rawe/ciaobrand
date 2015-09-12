@@ -201,7 +201,10 @@ app.get("/collections_product/edit/:id",function(req,res){
 app.get("/collections_product/delete/:imgurl/:id",function(req,res){
 	var imgurl = req.params.imgurl;
 	var id = req.params.id;
-	EntityModel.update({"_id":id},{$pull:{"detail_pictures":{"url":"@images@collections@"+imgurl}}},function(err){
+	console.log(imgurl);
+	console.log(id);
+	EntityModel.update({"_id":id},{$pull:{"detail_pictures":{"url":imgurl}}},function(err,info){
+		console.log(info);
 		if(err) res.send(err);
 		else{
 			res.redirect("/collections_product/edit/"+id);
