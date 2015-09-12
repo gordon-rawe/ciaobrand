@@ -28,9 +28,9 @@
 					<li class="first">
 						<p class="bottom">collections</p>
 						<ul class="second">
-							<li class="one <% if(type=="bags") { %>index<% } %>" ><a href="/collections/bags">hand bags</a></li>
-							<li class="two <% if(type=="wallets") { %>index<% } %>" ><a href="/collections/wallets">wallets</a></li>
-							<li class="three <% if(type=="accessories") { %>index<% } %>" ><a href="/collections/accessories">accessories</a></li>
+							<li <% if(mark=="bags") { %>class="index"<% } %> ><a href="/collections/edit/bags">hand bags</a></li>
+							<li <% if(mark=="wallets") { %>class="index"<% } %> ><a href="/collections/edit/wallets">wallets</a></li>
+							<li <% if(mark=="accessories") { %>class="index"<% } %>><a href="/collections/edit/accessories">accessories</a></li>
 						</ul>
 					</li>
 					<li><a href="/goddess">ciao's goddess</a></li>

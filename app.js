@@ -123,7 +123,8 @@ app.get("/collections/delete/:id",function(req,res){
 	});
 });
 
-app.get("/collections/edit",function(req,res){
+app.get("/collections/edit/:mark",function(req,res){
+	var mark = req.params.mark;
 	var bags = [];
 	var wallets = [];
 	var accessories = [];
@@ -135,7 +136,7 @@ app.get("/collections/edit",function(req,res){
 				if(entity.type=="wallets") wallets.push(entity);
 				if(entity.type=="accessories") accessories.push(entity);
 			});
-			res.render("collections_edit",{"bags":bags,"wallets":wallets,"accessories":accessories});
+			res.render("collections_edit",{"bags":bags,"wallets":wallets,"accessories":accessories,"mark":mark});
 		}
 	});
 });
@@ -154,7 +155,7 @@ app.post("/collection/add",function(req,res){
 			EntityModel.update({"_id":entity._id},{$push:{"detail_pictures":{"url":"@images@collections@default.jpg"}}},function(err){
 				if(err) return res.send("err happened");
 				else{
-					return res.redirect("/collections/edit");
+					return res.redirect("/collections/edit/"+type);
 				}
 			});
 			

@@ -65,6 +65,7 @@ h1,h2,h3,h4,h5,h6{
 	position: absolute;
 	top: -60px;
 	left: 182px;
+	z-index: 11;
 }
 .container ul li{
 	text-transform: uppercase;
