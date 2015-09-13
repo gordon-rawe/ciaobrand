@@ -21,6 +21,10 @@ var GoddessModel = require('./db').GoddessModel;
 var EntityModel = require('./db').EntityModel;
 var DesignModel = require('./db').DesignModel;
 
+app.get("/dashboard",function(req,res){
+	res.render("dashboard");
+});
+
 app.get("/",function(req,res){
 	var homeEntities = [];
 	EntityModel.find({type:"bags"}).limit(2).exec(function(err,bags){
